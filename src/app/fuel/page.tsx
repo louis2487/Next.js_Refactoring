@@ -40,6 +40,7 @@ export default function R3() {
         dispatch(setList(clicked_fuel.value));
     }
     return (
+        <main className="Check-main">
         <div>
             <h1 className="text-position">유종을 선택해주세요</h1>
             <div className="fuel-list">
@@ -51,5 +52,6 @@ export default function R3() {
                 ))}
             </div>
         </div>
+        </main>
     );
 }

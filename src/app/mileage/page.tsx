@@ -18,8 +18,8 @@ interface InboxPropsType {
 function Outbox({ value, handler }: OutboxPropsType) {
   return (
     <div className='wrap5' onClick={handler}>
-      <label htmlFor="mileage" className="black-label">주행거리(km)</label>
-      <div className='black-label2'> {value}</div></div>
+      <label htmlFor="mileage" className="white-label">주행거리(km)</label>
+      <div className='white-label2'> {value}</div></div>
   )
 }
 function Inbox({ value, handler1, handler2, handler3 }: InboxPropsType) {
@@ -66,10 +66,12 @@ export default function R5() {
     setInputValue(carkm.toString());
   };
   return (
-    <div>
+    <main className="Check-main">
       <h1 className="text-position">누적 주행거리를 입력해주세요</h1>
+      <div className="mileage-center">
       {isdata ? <Outbox value={inputValue} handler={Clickhandler} /> :
         <Inbox value={inputValue} handler1={Keyhandler} handler2={Inputhandler} handler3={Blurhandler} />}
     </div>
+    </main>
   );
 }

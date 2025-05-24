@@ -1,7 +1,7 @@
 'use client';
-import './globals.css';
+import '../globals.css';
 
-export default function Home() {
+export default function login() {
   return (
     <main className="home-main">
       <header className="home-header">
@@ -21,8 +21,8 @@ export default function Home() {
 
       <div className="home-hero">
         <h1 className="home-hero-title">
-          불편한 차량 소모품 관리<br/>
-          이제 바로바로 스마트하게 확인해요!
+          차량 등록 후 체크리스트를 작성하면<br className="hidden-md" />
+          점검 여부, 예상 교체 주기 및 거리를 알려드려요~!
         </h1>
       </div>
     </main>

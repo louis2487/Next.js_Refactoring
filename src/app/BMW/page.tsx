@@ -28,6 +28,7 @@ export default function R2B() {
         dispatch(setModel(clicked_model_name));
     }
     return (
+        <main className="Check-main">
         <div>
             <h1 className="text-position">차종을 선택해주세요</h1>
             <div className="car-list2">
@@ -39,5 +40,6 @@ export default function R2B() {
             ))}
          </div>
         </div>
+        </main>
     );
 }

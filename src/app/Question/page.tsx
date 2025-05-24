@@ -1,9 +1,9 @@
 'use client';
-import './globals.css';
+import '../globals.css';
 
-export default function Home() {
+export default function Question() {
   return (
-    <main className="home-main">
+    <main className="Question-main">
       <header className="home-header">
         <div className="header-title">SmartGauge</div>
         <nav>
@@ -21,8 +21,8 @@ export default function Home() {
 
       <div className="home-hero">
         <h1 className="home-hero-title">
-          불편한 차량 소모품 관리<br/>
-          이제 바로바로 스마트하게 확인해요!
+          문의하고 싶은 내용이 있다면<br />
+          36y4ws7@naver.com 로 메일 보내주세요!
         </h1>
       </div>
     </main>

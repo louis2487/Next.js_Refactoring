@@ -34,6 +34,7 @@ export default function R7() {
     console.log("list: ", mainlist);
     console.log("R7list: ", checklist);
     return (
+        <main className="Check-main">
         <div>
             <h1 className="text-position">결과를 확인하세요</h1>
             <div className='scroll'>{checklist.map((list:ChecklistType) => (
@@ -50,5 +51,6 @@ export default function R7() {
                 </div>
             ))}</div>
         </div>
+        </main>
     );
 }

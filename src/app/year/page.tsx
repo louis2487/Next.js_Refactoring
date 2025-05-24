@@ -17,6 +17,7 @@ const YearSelector = () => {
         }
     };
     return (
+        <main className="Check-main">
         <div>
             <h1 className="text-position">연식을 선택해주세요</h1>
             <div className="year-input-container">
@@ -27,6 +28,7 @@ const YearSelector = () => {
                 </div>
             </div>
         </div>
+        </main>
     );
 };
 

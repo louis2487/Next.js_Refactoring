@@ -107,6 +107,7 @@ export default function R6() {
   }, [step]);
 
   return (
+    <main className="Check-main">
     <div>
       <h1 className="text-position">소모품 체크리스트를 작성해주세요</h1>
       <div className='scroll'>{lists.map((list, index) => (
@@ -122,5 +123,6 @@ export default function R6() {
         </div>
       ))}</div>
     </div>
+    </main>
   );
 }

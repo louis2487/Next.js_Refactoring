@@ -1,15 +1,6 @@
-@import "tailwindcss";
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -127,7 +118,7 @@ img {
 .circle{
   width:30px;
   height:30px;
-  background-color: black;
+  background-color: BLACK;
   border-radius: 50%;
 }
 
@@ -140,12 +131,14 @@ img {
 .circle-wrapper.circle6{left:100%;}
 .circle-label {
   font-size: 14px;
-  color: #333;
+  color: gray;
   margin-top: 5px;  /* 원과 텍스트 사이 간격 */
 }
 
 .text-position{
   position : absolute;
+  color: white;
+text-shadow: 0 1px 2px rgba(0,0,0,0.6);
   font-size : 50px;
   top: 50px;
   left : 100px;
@@ -196,17 +189,17 @@ img {
 }
 .car-list {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, auto);
   flex-direction: row;
   flex-wrap: wrap; 
   justify-content: flex-start; 
   gap: 20px; 
-  margin-top: 150px; 
+  margin-top: 250px; 
   margin-left: 50px; 
 }
 .car-list2 {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, auto);
   flex-direction: row;
   flex-wrap: wrap; 
   justify-content: flex-start; 
@@ -221,12 +214,13 @@ img {
   flex-wrap: wrap; 
   justify-content: flex-start; 
   gap: 40px; 
-  margin-top: 150px; 
+  margin-top: 250px; 
   margin-left: 100px; 
 }
 
 .year-input-container {
   display: flex;
+  padding-top: 15rem; 
   align-items: center;
   margin-top: 50px;
   margin-left: 100px;
@@ -268,7 +262,16 @@ img {
 .year-button:hover {
   background-color: #357ab7;
 }
-
+.mileage-center {
+  position: absolute;  
+  top: 30%;          
+  left: 25%;           
+  transform: translate(-50%, -50%); 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
 
 .mileage-input-container {
   display: flex;
@@ -276,17 +279,19 @@ img {
   align-items: center;
   margin-top: 30px;
   margin-left : 30px;
+  
 }
 .container2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 30px;
+  margin-top: auto;
   margin-left : 120px;
 }
 
 .mileage-label {
   font-size: 1.2rem;
+  color: white;
   font-weight: 600;
   margin-bottom: 10px;
 }
@@ -332,7 +337,6 @@ img {
   align-items: center;
   gap : 30px;  
   width: 100%;
-  
 }
 .wrap{
   display: flex;
@@ -356,7 +360,6 @@ img {
   flex-direction: row;
   gap: 20px;
   align-items: center;
-  transform: translateY(-20px);
 }
 .input-pair2 {
   display: flex;
@@ -373,15 +376,20 @@ img {
   font-weight: 600;
   color :  black;
 }
+.white-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color :  white;
+}
 .black-label-size {
   font-size: 1.5rem;
   font-weight: 500;
   color :  black;
 }
-.black-label2 {
+.white-label2 {
   font-size: 2.5rem;
   font-weight: 500;
-  color :  black;
+  color :  white;
 }
 .line{
   border-bottom: 3px solid rgb(196, 195, 195);  
@@ -391,6 +399,7 @@ img {
 }
 .wrap2{
   display: absolute;
+  padding: 0 1rem; 
   flex-direction: column;
   align-items: center;
   margin-top : 20px;
@@ -401,14 +410,12 @@ img {
   display: absolute;
   flex-direction: column;
   align-items: center;
-  margin-top : 20px;
-  margin-left : 120px;
-  transform: translateX(100px);
+  margin-top : auto;
 }
 .scroll {
   max-height: 70vh;
   overflow-y: auto;
-  margin-top: 20px;
+  margin-top: 160px;
   margin-left: 60px;
   padding-right: 10px;
   scrollbar-width: thin;
@@ -443,5 +450,117 @@ img {
 
 .text-green {
   color: #4ade80;
+}
+.home-main {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('/Main/car01.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.home-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  background: rgba(0,0,0,0.4);
+  position: relative;
+  z-index: 2;
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.header-nav {
+  display: flex;
+  gap: 2rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #fff;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: text-decoration 0.2s;
+}
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.login-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  background: rgba(37, 99, 235, 0.8);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: none;
+  cursor: pointer;
+}
+.login-btn:hover {
+  background: #2563eb;
+}
+
+.home-hero {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 0;
+}
+
+.home-hero-title {
+  margin-top: 8rem;
+  text-align: center;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 800;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+@media (min-width: 768px) {
+  .home-hero-title {
+    margin-top: 7.5rem;
+    font-size: 3rem;
+  }
+  .hidden-md {
+    display: none;
+  }
+}
+
+.Info-main {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('/Main/정비.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.Question-main {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('/Main/CS.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.Check-main {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('/Main/run.png');
+  background-size: cover;
+  background-position: center;    
 }
 ;
