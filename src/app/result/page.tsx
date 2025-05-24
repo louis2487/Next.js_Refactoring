@@ -39,7 +39,7 @@ export default function R7() {
             <h1 className="text-position">결과를 확인하세요</h1>
             <div className='scroll'>{checklist.map((list:ChecklistType) => (
                 <div className={"wrap2"} key={list.name}>
-                    <div className="unit">
+                    <div className="unit2">
                         <Light_And_Item signal={list.signal} name ={list.name}/>
                         <div className="input-pair">
                             <Outbox label="점검 여부" value={list.signaltext??''}/>

@@ -118,7 +118,7 @@ img {
 .circle{
   width:30px;
   height:30px;
-  background-color: BLACK;
+  background-color: #2A2A2A;
   border-radius: 50%;
 }
 
@@ -131,7 +131,7 @@ img {
 .circle-wrapper.circle6{left:100%;}
 .circle-label {
   font-size: 14px;
-  color: gray;
+  color: #C0C0C0;
   margin-top: 5px;  /* 원과 텍스트 사이 간격 */
 }
 
@@ -266,7 +266,6 @@ text-shadow: 0 1px 2px rgba(0,0,0,0.6);
   position: absolute;  
   top: 30%;          
   left: 25%;           
-  transform: translate(-50%, -50%); 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -276,10 +275,8 @@ text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 .mileage-input-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 30px;
-  margin-left : 30px;
-  
+  margin-top: 12px;
+  align-items: center; 
 }
 .container2 {
   display: flex;
@@ -336,12 +333,23 @@ text-shadow: 0 1px 2px rgba(0,0,0,0.6);
   justify-content: space-between; 
   align-items: center;
   gap : 30px;  
-  width: 100%;
+  width: 1200px;
+  margin-bottom: 10px;
+}
+.unit2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  align-items: center;
+  gap : 30px;  
+  width: 1200px;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 .wrap{
   display: flex;
+  margin-top: 15px;
   align-items: center;
-  margin-bottom: 20px;
   gap : 20px;  
 }
 .checklist-unit {
@@ -356,12 +364,6 @@ text-shadow: 0 1px 2px rgba(0,0,0,0.6);
   height: 30px;
 }
 .input-pair {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: center;
-}
-.input-pair2 {
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -401,10 +403,10 @@ text-shadow: 0 1px 2px rgba(0,0,0,0.6);
   display: absolute;
   padding: 0 1rem; 
   flex-direction: column;
-  align-items: center;
-  margin-top : 20px;
+  align-items: start;
   margin-left : 20px;
-  transform: translateY(20px);
+  margin-top : 10px;
+  margin-bottom: 5px;
 }
 .wrap5{
   display: absolute;
@@ -415,11 +417,13 @@ text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 .scroll {
   max-height: 70vh;
   overflow-y: auto;
-  margin-top: 160px;
-  margin-left: 60px;
-  padding-right: 10px;
+  margin-top: 140px;
+  margin-left : 100px;
   scrollbar-width: thin;
+  width : 1300px;
   scrollbar-color: #ccc transparent; 
+  background-color: white;
+  opacity: 0.95;
 }
 
 .light{

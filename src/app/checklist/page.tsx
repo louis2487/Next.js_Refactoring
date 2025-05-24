@@ -111,14 +111,18 @@ export default function R6() {
     <div>
       <h1 className="text-position">소모품 체크리스트를 작성해주세요</h1>
       <div className='scroll'>{lists.map((list, index) => (
-        <div className="wrap2" key={list.name}>
+
+        <div key={list.name}>
           <div className="unit">
             <CheckboxItem list={list} handler={CheckboxChange} index={index} />
+
             <div className="input-pair">
               {list.in1 ? <Inbox label="교체거리(km):" placeholder="예) 45000" handler={enter1} index={index} type="number" /> : <Outbox label="교체거리" value={list.input1||""} />}
               {list.in2 ? <Inbox label="교체시점(YY-MM):" placeholder="예) 25-04" handler={enter2} index={index} type="text" /> : <Outbox label="교체시점" value={list.input2||""} />}
             </div>
+
           </div>
+          
           <div className='line'></div>
         </div>
       ))}</div>
