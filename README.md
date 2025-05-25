@@ -2,7 +2,7 @@
 
 **프로젝트명**: 차량 소모품 관리 웹서비스
 
-**배포**: [**https://car-maintenance-6fe8a.web.app/**](https://car-maintenance-6fe8a.web.app/)
+**배포**: [**https://next-js-refactoring-louis2487-johongraes-projects.vercel.app/**](https://next-js-refactoring-louis2487-johongraes-projects.vercel.app/)
 
 **기간**: 2025.03 – 05(Next.js 리팩토링 + Vercel 배포 + 홈페이지 구현 완료)
 
