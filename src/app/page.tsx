@@ -1,5 +1,6 @@
 'use client';
 import './globals.css';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -8,10 +9,10 @@ export default function Home() {
         <div className="header-title">SmartGauge</div>
         <nav>
           <ul className="header-nav">
-            <li><a href="/" className="nav-link">홈</a></li>
-            <li><a href="/Info" className="nav-link">소개</a></li>
-            <li><a href="/R1" className="nav-link">점검</a></li>
-            <li><a href="/Question" className="nav-link">문의</a></li>
+            <li><Link href="/" className="nav-link">홈</Link></li>
+            <li><Link href="/Info" className="nav-link">소개</Link></li>
+            <li><Link href="/R1" className="nav-link">점검</Link></li>
+            <li><Link href="/Question" className="nav-link">문의</Link></li>
           </ul>
         </nav>
         <button className="login-btn">

@@ -458,7 +458,7 @@ text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 .home-main {
   min-height: 100vh;
   width: 100%;
-  background-image: url('/Main/car01.png');
+  background-image: url('/Main/car01.PNG');
   background-size: cover;
   background-position: center;
   position: relative;
@@ -547,7 +547,7 @@ text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 .Info-main {
   min-height: 100vh;
   width: 100%;
-  background-image: url('/Main/정비.png');
+  background-image: url('/Main/정비.PNG');
   background-size: cover;
   background-position: center;
   position: relative;
@@ -555,7 +555,7 @@ text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 .Question-main {
   min-height: 100vh;
   width: 100%;
-  background-image: url('/Main/CS.png');
+  background-image: url('/Main/CS.PNG');
   background-size: cover;
   background-position: center;
   position: relative;
@@ -563,7 +563,7 @@ text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 .Check-main {
   min-height: 100vh;
   width: 100%;
-  background-image: url('/Main/run.png');
+  background-image: url('/Main/run.PNG');
   background-size: cover;
   background-position: center;    
 }

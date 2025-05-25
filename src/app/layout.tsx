@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="ko">
       <body>
         <Providers>
-          {pathname !== '/' && <TopBar />}
+          {pathname !== '/' && pathname !== '/Info'&&pathname !== '/Question'&&<TopBar />}
           {children}
         </Providers>
       </body>
