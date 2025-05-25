@@ -6,11 +6,11 @@
 
 **배포**: [**https://car-maintenance-6fe8a.web.app/**](https://car-maintenance-6fe8a.web.app/)
 
-**기간**: 2025.03 – 현재(배포 후 TypeScript, Tailwind CSS 등 프로젝트 실무화 진행중)
+**기간**: 2025.03 – 05(Next.js 리팩토링 + Vercel 배포 + 홈페이지 구현 완료)
 
 **개발자**: 조홍래 **(Frontend)**(1인 총괄)
 
-**깃허브: [https://github.com/louis2487](https://github.com/louis2487/car-maintenance-web/blob/master/src)**
+**깃허브: [https://github.com/louis2487](https://github.com/louis2487/Next.js_Refactoring)**
 
 
 
@@ -118,12 +118,12 @@
 
 ### 6. Github Source
 
- **Source 링크 :** https://github.com/louis2487/car-maintenance-web/blob/master/src
+ **Source 링크 :** https://github.com/louis2487/Next.js_Refactoring/tree/master/src
 
 
 
 ### 7. 배포
 
-Firebase를 사용하였습니다.
+Vercel 사용
 
- **배포링크**: [**https://car-maintenance-6fe8a.web.app/**](https://car-maintenance-6fe8a.web.app/)
+ **배포링크**: [**https://next-js-refactoring-louis2487-johongraes-projects.vercel.app/**](https://next-js-refactoring-louis2487-johongraes-projects.vercel.app/)
