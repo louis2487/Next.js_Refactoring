@@ -124,4 +124,4 @@
 
 Vercel 사용
 
- **배포링크**: [**https://next-js-refactoring-louis2487-johongraes-projects.vercel.app/**](https://next-js-refactoring-louis2487-johongraes-projects.vercel.app/)
+ **배포링크**: [**https://next-js-refactoring.vercel.app/**](https://next-js-refactoring.vercel.app/)
