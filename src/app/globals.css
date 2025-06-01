@@ -2,7 +2,11 @@
   --background: #ffffff;
   --foreground: #171717;
 }
-
+.html-set {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; 
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -457,19 +461,19 @@ text-shadow: 0 1px 2px rgba(0,0,0,0.6);
 }
 .home-main {
   min-height: 100vh;
-  width: 100%;
+  min-width: 100vw;
   background-image: url('/Main/car01.PNG');
   background-size: cover;
   background-position: center;
-  position: relative;
+  position: flex;
 }
 
 .home-header {
-  width: 100%;
+  max-width: 100%;
+  padding: 1.5rem 2.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2.5rem;
   background: rgba(0,0,0,0.4);
   position: relative;
   z-index: 2;
@@ -508,6 +512,7 @@ text-shadow: 0 1px 2px rgba(0,0,0,0.6);
   background: rgba(37, 99, 235, 0.8);
   color: #fff;
   font-weight: 600;
+  margin : 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   border: none;
   cursor: pointer;
@@ -566,5 +571,53 @@ text-shadow: 0 1px 2px rgba(0,0,0,0.6);
   background-image: url('/Main/run.PNG');
   background-size: cover;
   background-position: center;    
+}
+.login-main {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('/Main/night.jpg');
+  background-size: cover;
+  background-position: center;    
+}
+.input-email {
+  width: 600px;       
+  height: 120px;             
+  font-size: 2.5rem;      
+  padding: 10px 15px;      
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  text-align: center;       
+  margin-top: 10px;
+}
+.container-email {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: auto;
+}
+.label-email {
+  font-size: 3rem;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+.login-start {
+  padding: 0.5rem 1.25rem;
+  border-radius: 2rem;
+  background: green;
+  color: #fff;
+  width : 120px;
+  height : 50px;
+  margin-left : 20px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(71, 15, 15, 0.08);
+  border: none;
+  cursor: pointer;
+}
+.home-butt2{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 ;

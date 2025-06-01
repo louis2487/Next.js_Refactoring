@@ -10,10 +10,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   return (
-    <html lang="ko">
+    <html lang="ko" className='html-set'>
       <body>
         <Providers>
-          {pathname !== '/' && pathname !== '/Info'&&pathname !== '/Question'&&<TopBar />}
+          {pathname !== '/' && pathname !== '/Info'&&pathname !== '/Question'&&pathname !== '/login'&& pathname !== '/signup'&&<TopBar />}
           {children}
         </Providers>
       </body>

@@ -1,5 +1,6 @@
 'use client';
 import '../globals.css';
+import Link from 'next/link';
 
 export default function Info() {
   return (
@@ -14,9 +15,14 @@ export default function Info() {
             <li><a href="/Question" className="nav-link">문의</a></li>
           </ul>
         </nav>
-        <button className="login-btn">
-          로그인
-        </button>
+        <div className='home-butt2'>
+        <Link href="/signup">
+        <button className="login-btn">등록</button>
+        </Link>
+        <Link href="/login">
+        <button className="login-btn">로그인</button>
+        </Link>
+        </div>
       </header>
 
       <div className="home-hero">
