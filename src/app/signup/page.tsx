@@ -74,7 +74,7 @@ export default function signup() {
           </ul>
         </nav>
         <div className='home-butt2'>
-          <Link href="/sign_up">
+          <Link href="/signup">
             <button className="login-btn">등록</button>
           </Link>
           <Link href="/login">
