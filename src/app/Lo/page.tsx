@@ -20,7 +20,7 @@ function Inbox({ value,handler1, handler2, handler3 }: InboxPropsType) {
       <label htmlFor="email" className="label-email">Email:</label>
       <input
         type="email"
-        id="useremail"
+        id="email"
         className="input-email"
         value={value}
         onChange={handler2}
