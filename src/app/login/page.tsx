@@ -32,17 +32,17 @@ function Inbox({ value,handler1, handler2, handler3 }: InboxPropsType) {
   )
 }
 
-export default function login() {
+export default function Login() {
   const [email, setEmail] = useState<string>("");
   const dispatch = useDispatch();
   const Loginhandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email.trim() }),
-      });
+    const res = await fetch('/api/userlogin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: email.trim() }),
+    });
   const Inputhandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };

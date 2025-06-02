@@ -31,7 +31,7 @@ function Inbox({ value, handler1, handler2, handler3 }: InboxPropsType) {
   )
 }
 
-export default function signup() {
+export default function Signup() {
   const [email, setEmail] = useState<string>("");
   const dispatch = useDispatch();
   const SetEmailhandler = (e: React.ChangeEvent<HTMLInputElement>) => {
