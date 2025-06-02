@@ -43,14 +43,21 @@ export default function Lo() {
     if (!isNaN(data)) dispatch(setMileage(data));
   }
   const Loginhandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    const res = await fetch('/api/userlogin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email: email.trim() }),
-    });
-  }
+    e.preventDefault();         
+  
+      const res = await fetch("/api/userlogin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+  
+      if (res.ok) {
+        const data = await res.json();
+        alert(`${data.email}님, 로그인 성공!`);
+      } else{
+        alert(`LOGIN ERROR`);
+        }
+  };
   return (
     <main className="login-main">
       <header className="home-header">
