@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="ko" className='html-set'>
       <body>
         <Providers>
-          {pathname !== '/' && pathname !== '/Info'&&pathname !== '/Question'&&pathname !== '/login'&& pathname !== '/signup'&&<TopBar />}
+          {pathname !== '/' && pathname !== '/Info'&&pathname !== '/Question'&&pathname !== '/Lo'&& pathname !== '/signup'&&<TopBar />}
           {children}
         </Providers>
       </body>

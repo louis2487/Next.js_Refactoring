@@ -78,7 +78,7 @@ export default function Signup() {
           <Link href="/signup">
             <button className="login-btn">등록</button>
           </Link>
-          <Link href="/login">
+          <Link href="/Lo">
             <button className="login-btn">로그인</button>
           </Link>
         </div>

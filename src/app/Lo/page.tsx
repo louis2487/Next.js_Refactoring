@@ -32,9 +32,16 @@ function Inbox({ value,handler1, handler2, handler3 }: InboxPropsType) {
   )
 }
 
-export default function Login() {
+export default function Lo() {
   const [email, setEmail] = useState<string>("");
   const dispatch = useDispatch();
+  const Inputhandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+  const Blurhandler = () => {
+    const data = parseInt(email, 10);
+    if (!isNaN(data)) dispatch(setMileage(data));
+  }
   const Loginhandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     const res = await fetch('/api/userlogin', {
       method: 'POST',
@@ -43,12 +50,6 @@ export default function Login() {
       },
       body: JSON.stringify({ email: email.trim() }),
     });
-  const Inputhandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-  const Blurhandler = () => {
-    const data = parseInt(email, 10);
-    if (!isNaN(data)) dispatch(setMileage(data));
   }
   return (
     <main className="login-main">
@@ -66,7 +67,7 @@ export default function Login() {
           <Link href="/signup">
             <button className="login-btn">등록</button>
           </Link>
-          <Link href="/login">
+          <Link href="/Lo">
             <button className="login-btn">로그인</button>
           </Link>
         </div>
@@ -82,5 +83,4 @@ export default function Login() {
       </div>
     </main>
   );
-}
 }
