@@ -54,6 +54,7 @@ export default function signup() {
       const data = await res.json();
       alert('이메일 등록 완료!');
       setEmail('');
+      console.log(data.status);
     } else if (res.status === 409) {
       alert('이미 등록된 이메일입니다.');
     } else {
