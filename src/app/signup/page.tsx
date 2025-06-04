@@ -32,8 +32,12 @@ function Inbox({ value, handler1, handler2, handler3 }: InboxPropsType) {
 }
 
 export default function Signup() {
+
   const [email, setEmail] = useState<string>("");
   const dispatch = useDispatch();
+  const useremail = useSelector((state: RootState) => state.myuser.useremail);
+  const userlogin = useSelector((state: RootState) => state.myuser.userlogin);
+
   const SetEmailhandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
@@ -74,14 +78,15 @@ export default function Signup() {
             <li><Link href="/Question" className="nav-link">문의</Link></li>
           </ul>
         </nav>
-        <div className='home-butt2'>
-          <Link href="/signup">
-            <button className="login-btn">등록</button>
-          </Link>
-          <Link href="/Lo">
-            <button className="login-btn">로그인</button>
-          </Link>
-        </div>
+        {userlogin ? <div className='user-wellcom'>환영해요 {useremail}님!</div> :
+          <div className='home-butt2'>
+            <Link href="/signup">
+              <button className="login-btn">등록</button>
+            </Link>
+            <Link href="/Lo">
+              <button className="login-btn">로그인</button>
+            </Link>
+          </div>}
       </header>
 
       <div className="home-hero">

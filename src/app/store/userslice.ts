@@ -1,20 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserType {
-  email: string;
+  useremail: string;
+  userlogin: boolean;
 }
 
 const userSlice = createSlice({
-  name: 'user',
+  name: 'useremail',
   initialState: <UserType>{
-    email: "",
+    useremail: "",
+    userlogin: false,
   },
   reducers: {
-    setStep: (state, action: PayloadAction<string>) => {
-      state.email = action.payload;
+    login: (state, action: PayloadAction<{ email: string }>) => {
+      state.userlogin = true;                   
+      state.useremail = action.payload.email;   
+    },
+    logout: (state) => {
+      state.userlogin = false;
+      state.useremail = '';
     },
   },
 });
 
-export const { setStep} = userSlice.actions;
+export const { login, logout } = userSlice.actions;
 export default userSlice.reducer;

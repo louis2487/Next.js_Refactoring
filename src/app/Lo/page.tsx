@@ -2,10 +2,11 @@
 "use client";
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from '../store/store';
 import { setMileage } from '../store/carSlice';
+import { login, logout } from '../store/userslice';
 import '../globals.css';
 import Link from 'next/link';
-
 
 
 interface InboxPropsType {
@@ -14,7 +15,7 @@ interface InboxPropsType {
   handler2: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handler3: () => void;
 }
-function Inbox({ value,handler1, handler2, handler3 }: InboxPropsType) {
+function Inbox({ value, handler1, handler2, handler3 }: InboxPropsType) {
   return (
     <div className="container-email">
       <label htmlFor="email" className="label-email">Email:</label>
@@ -34,6 +35,12 @@ function Inbox({ value,handler1, handler2, handler3 }: InboxPropsType) {
 
 export default function Lo() {
   const [email, setEmail] = useState<string>("");
+  const [usermail, setUsermail] = useState<string>("");
+  const [islogin, setIslogin] = useState<boolean>(false);
+
+
+
+
   const dispatch = useDispatch();
   const Inputhandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -43,20 +50,24 @@ export default function Lo() {
     if (!isNaN(data)) dispatch(setMileage(data));
   }
   const Loginhandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();         
-  
-      const res = await fetch("/api/userlogin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email.trim() }),
-      });
-  
-      if (res.ok) {
-        const data = await res.json();
-        alert(`${data.email}님, 로그인 성공!`);
-      } else{
-        alert(`LOGIN ERROR`);
-        }
+    e.preventDefault();
+
+    const res = await fetch("/api/userlogin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email.trim() }),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      alert(`${data.email}님, 로그인 성공!`);
+      setIslogin(true);
+      setUsermail(`${data.email}`);
+      login(data.email);
+      setEmail('');
+    } else {
+      alert(`LOGIN ERROR`);
+    }
   };
   return (
     <main className="login-main">
@@ -70,14 +81,16 @@ export default function Lo() {
             <li><Link href="/Question" className="nav-link">문의</Link></li>
           </ul>
         </nav>
-        <div className='home-butt2'>
-          <Link href="/signup">
-            <button className="login-btn">등록</button>
-          </Link>
-          <Link href="/Lo">
-            <button className="login-btn">로그인</button>
-          </Link>
-        </div>
+        {islogin ? <div className='user-wellcom'>환영해요 {usermail}님!</div> :
+          <div className='home-butt2'>
+            <Link href="/signup">
+              <button className="login-btn">등록</button>
+            </Link>
+            <Link href="/Lo">
+              <button className="login-btn">로그인</button>
+            </Link>
+          </div>
+        }
       </header>
 
       <div className="home-hero">
@@ -85,7 +98,7 @@ export default function Lo() {
           등록된 이메일을 입력해주세요!<br />
         </h1>
         <div className="mileage-center">
-          <Inbox value={email} handler1 ={Loginhandler} handler2={Inputhandler} handler3={Blurhandler} />
+          <Inbox value={email} handler1={Loginhandler} handler2={Inputhandler} handler3={Blurhandler} />
         </div>
       </div>
     </main>
