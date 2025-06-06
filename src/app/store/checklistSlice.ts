@@ -10,7 +10,7 @@ interface ChecklistState {
 interface Item {
   name: string;
   lastkm: number | null;
-  lasttime: number | null;
+  lasttime: string | null;
   replacekm: string[];
   replacetime: string[];
   remainkm: number | null;
@@ -66,7 +66,7 @@ const replacekmMap: Record<string, string[]> = {
 };
 
 const replacetimeMap: Record<string, string[]> = {
-  '엔진오일': ["6"],
+  '엔진오일': ["12"],
   '미션오일': ["120"],
   '브레이크 패드': ["24"],
   '브레이크 오일': ["24"],
@@ -97,129 +97,138 @@ const checklistSlice = createSlice({
     list: [],
     R6list: [],
     R7list: [],
-    nowtime: "25-05",
+    nowtime: "25-06",
   } as ChecklistState,
   reducers: {
     setList: (state, action: PayloadAction<string>) => {
       const items = listMap[action.payload] || [];
       state.list = items.map(name => (
-        { 
-          name, 
-          lastkm: null, 
-          lasttime: null, 
-          replacekm: replacekmMap[name], 
-          replacetime: replacetimeMap[name], 
-          remainkm: null, 
-          remaintime: null, 
-          signal: 'unknown' 
+        {
+          name,
+          lastkm: null,
+          lasttime: null,
+          replacekm: replacekmMap[name],
+          replacetime: replacetimeMap[name],
+          remainkm: null,
+          remaintime: null,
+          signal: 'unknown'
         }
       ));
       state.R6list = items.map(name => (
-        { 
-          name, 
-          input1: 'null', 
-          input2: 'null', 
-          in1: false, 
-          in2: false, 
-          checked: false 
+        {
+          name,
+          input1: 'null',
+          input2: 'null',
+          in1: false,
+          in2: false,
+          checked: false
         }
       ));
       state.R7list = items.map(name => (
-        { 
-          name, 
-          signal: null, 
-          signaltext: null, 
-          foreseekm: null, 
-          foreseetime: null 
+        {
+          name,
+          signal: null,
+          signaltext: null,
+          foreseekm: null,
+          foreseetime: null
         }
       ));
     },
     setInput: (state, action: PayloadAction<{ input1: string | null, input2: string | null }[]>) => {
-         action.payload.forEach((data, index) => {
-           if (!state.list[index]) return;
-           const km   = data.input1 && !isNaN(Number(data.input1))
-                        ? Number(data.input1)
-                       : null;
-            const time = data.input2 && !isNaN(Number(data.input2))
-                        ? Number(data.input2)
-                         : null;
-      
-           state.list[index].lastkm   = km;
-            state.list[index].lasttime = time;
-          });
-        },
-        setOperation: (state, action: PayloadAction<{ currentkm: number; caryear: string }>) => {
-          const { currentkm, caryear } = action.payload;
-          state.list.forEach((item, index) => {
-            if (!state.list[index]) return;
-        
-            const lastkm   = Number.isFinite(item.lastkm as number)   ? item.lastkm!   : 0;
-            const lasttime = Number.isFinite(item.lasttime as number) ? item.lasttime! : 0;
+      action.payload.forEach((data, index) => {
+        if (!state.list[index]) return;
+        const km = data.input1 && !isNaN(Number(data.input1))
+          ? Number(data.input1)
+          : null;
+        const time = data.input2 ? data.input2 : null;
 
-            const replacekm   = parseInt(item.replacekm[0], 10);
-            const replacetime = parseInt(item.replacetime[0], 10);
+        state.list[index].lastkm = km;
+        state.list[index].lasttime = time;
+      });
+    },
+    setOperation: (state, action: PayloadAction<{ currentkm: number; caryear: string }>) => {
+      const { currentkm, caryear } = action.payload;
+      state.list.forEach((item, index) => {
+        if (!state.list[index]) return;
 
-            const remainkm   = replacekm   - currentkm + lastkm;
-            const remaintime = replacetime - howlife(caryear, state.nowtime) + lasttime;
-            state.list[index].remainkm   = remainkm;
-            state.list[index].remaintime = remaintime;
- 
-            if (remainkm <= 0 || remaintime <= 0) {
-              state.list[index].signal = 'red';
-            } else if (
-              remainkm <= replacekm * 0.33 ||
-              remaintime <= replacetime * 0.33
-            ) {
-              state.list[index].signal = 'yellow';
-            } else {
-              state.list[index].signal = 'green';
-            }
-          });
-        },
-        
+        const lastkm = Number.isFinite(item.lastkm as number) ? item.lastkm! : 0;
+        const replacekm = parseInt(item.replacekm[0], 10);
+        const remainkm = replacekm - currentkm + lastkm;
+        state.list[index].remainkm = remainkm;
+
+
+        const replacetime = parseInt(item.replacetime[0], 10);
+
+        if (item.lasttime === "null") {
+          state.list[index].remaintime = replacetime + changeMonth(state.nowtime) - changeMonth(caryear);
+        }
+        else {
+          state.list[index].remaintime = replacetime - howlife(caryear, state.nowtime);
+        }
+
+
+        const remaintime = state.list[index].remaintime ? state.list[index].remaintime : 0;
+        if (remainkm <= 0 || remaintime <= 0) {
+          state.list[index].signal = 'red';
+        } else if (
+          remainkm <= replacekm * 0.33 ||
+          remaintime <= replacetime * 0.33
+        ) {
+          state.list[index].signal = 'yellow';
+        } else {
+          state.list[index].signal = 'green';
+        }
+      });
+    },
+
     setOutput: (state, action: PayloadAction<{ currentkm: number }>) => {
       const { currentkm } = action.payload;
       state.list.forEach((data, index) => {
         if (!state.R7list[index]) return;
-    
+
         const remainkm = typeof data.remainkm === 'number' ? data.remainkm : 0;
         const expectedKm = remainkm + currentkm;
         state.R7list[index].foreseekm =
           isNaN(expectedKm) || expectedKm < currentkm
             ? "초과"
             : expectedKm.toString();
-    
+
         const tmptime = typeof data.remaintime === 'number'
           ? plusmonth(data.remaintime, state.nowtime)
           : state.nowtime;
-    
-        const targetMonth = parseMonth(tmptime);
-        const nowMonth    = parseMonth(state.nowtime);
-    
+
+        const targetMonth = changeMonth(tmptime);
+        const nowMonth = changeMonth(state.nowtime);
+
         state.R7list[index].foreseetime =
           isNaN(targetMonth) || targetMonth < nowMonth
             ? "초과"
             : tmptime;
-    
+
         const sig = data.signal === 'red' || data.signal === 'yellow' || data.signal === 'green'
           ? data.signal
           : 'red';
-        state.R7list[index].signal     = sig;
+        state.R7list[index].signal = sig;
         state.R7list[index].signaltext = Signaltext(sig);
       });
     },
-    
-    
+
+
   },
 });
 
-function parseMonth(str: string): number {
-  const [yearstr, monthstr] = str.split("-");
-  return parseInt(yearstr, 10) * 12 + parseInt(monthstr, 10);
+function changeMonth(str: string): number {
+  if (str.includes("-")) {
+    const [yearstr, monthstr] = str.split("-");
+    return parseInt(yearstr, 10) * 12 + parseInt(monthstr, 10);
+  }
+  else {
+    return (parseInt(str, 10) - 2000) * 12;
+  }
 }
 
 function howlife(year: string, now: string): number {
-  return parseMonth(now) - (parseInt(year, 10) - 2000) * 12;
+  return changeMonth(now) - (parseInt(year, 10) - 2000) * 12;
 }
 
 function toYear(totalMonths: number): string {
@@ -233,7 +242,7 @@ function toYear(totalMonths: number): string {
 }
 
 function plusmonth(remain: number, now: string): string {
-  return toYear(parseMonth(now) + remain);
+  return toYear(changeMonth(now) + remain);
 }
 
 export const { setList, setInput, setOperation, setOutput } = checklistSlice.actions;

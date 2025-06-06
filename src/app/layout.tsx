@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 import { store } from "./store/store"; 
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
-
+import {login, logout} from './store/userslice'
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -25,8 +25,19 @@ function LayoutContent({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     async function restoreSession() {
+      const res = await fetch('/api/me', {
+        method: 'GET',
+        credentials: 'include', 
+      });
+      if (res.ok) {
+        const user = await res.json();
+        dispatch(login(user));
+      } else {
+        dispatch(logout());
+      }
     }
     restoreSession();
   }, [dispatch]);

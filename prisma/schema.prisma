@@ -10,28 +10,25 @@ datasource db {
 model owner {
   id    Int    @id @default(autoincrement())
   email String @unique
-  cars  car[]
 }
 
 model car {
   id       Int     @id @default(autoincrement())
-  ownerId  Int
-  brand    String
+  useremail String
+  brend    String
   model    String
+  fuel     String
   year     Int
   mileage  Int
-  owner    owner   @relation(fields: [ownerId], references: [id])
-  parts    part[]
 }
 
 model part {
-  id           Int       @id @default(autoincrement())
-  carId        Int
-  name         String
-  lastkm       Int?       // 초기 입력 없을 수 있음
-  lasttime     DateTime?  // 초기 입력 없을 수 있음
-  remainkm     Int?
-  remaintime   DateTime?
-
-  car          car       @relation(fields: [carId], references: [id])
+  id         Int       @id @default(autoincrement())
+  name       String
+  lastkm     Int?
+  lasttime   String?
+  remainkm   Int?
+  remaintime Int?
+  useremail  String
+  model      String
 }

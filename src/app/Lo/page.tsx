@@ -1,10 +1,10 @@
-//로그인 페이지 - update 0531
 "use client";
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '../store/store';
 import { setMileage } from '../store/carSlice';
 import { login, logout } from '../store/userslice';
+import { useRouter } from 'next/navigation';
 import '../globals.css';
 import Link from 'next/link';
 
@@ -34,21 +34,21 @@ function Inbox({ value, handler1, handler2, handler3 }: InboxPropsType) {
 }
 
 export default function Lo() {
+  const dispatch = useDispatch();
+  const router = useRouter();
+ 
   const [email, setEmail] = useState<string>("");
   const [usermail, setUsermail] = useState<string>("");
   const [islogin, setIslogin] = useState<boolean>(false);
 
 
-
-
-  const dispatch = useDispatch();
   const Inputhandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
   const Blurhandler = () => {
     const data = parseInt(email, 10);
     if (!isNaN(data)) dispatch(setMileage(data));
-  }
+  };
   const Loginhandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -65,10 +65,27 @@ export default function Lo() {
       setUsermail(`${data.email}`);
       login(data.email);
       setEmail('');
+      dispatch(login({email:data.email}));
+      router.push('/');
     } else {
       alert(`LOGIN ERROR`);
     }
   };
+  const LogoutHandler = async () => {
+    const res = await fetch("/api/logout", {
+      method: "POST",
+    });
+  
+    if (res.ok) {
+      alert("로그아웃 되었습니다.");
+      setIslogin(false);
+      setUsermail('');
+      dispatch(logout());
+    } else {
+      alert("로그아웃 실패");
+    }
+  };
+  
   return (
     <main className="login-main">
       <header className="home-header">
@@ -81,7 +98,9 @@ export default function Lo() {
             <li><Link href="/Question" className="nav-link">문의</Link></li>
           </ul>
         </nav>
-        {islogin ? <div className='user-wellcom'>환영해요 {usermail}님!</div> :
+        {islogin ? <div className='home-butt2'><div className='user-wellcom'>환영해요 {usermail}님!</div> 
+        <button className="login-btn" onClick={LogoutHandler}>로그아웃</button></div>
+         :
           <div className='home-butt2'>
             <Link href="/signup">
               <button className="login-btn">등록</button>

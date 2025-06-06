@@ -40,6 +40,38 @@ function TopBar() {
     }
     }>Home</button>
   );
+  const {useremail} = useSelector((state: RootState) => state.myuser); 
+  const {brend, model, fuel, year, mileage} = useSelector((state: RootState) => state.mycar); 
+  const {list} = useSelector((state: RootState) => state.mylist); 
+  
+  const carsavehandler = async () => {
+      const response = await fetch('/api/carsave', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({useremail, brend, model, fuel, year, mileage}),
+      });
+     
+        if(response){
+              alert("차량 등록 완료!");
+        }
+    } 
+    const saveparthandler = async () => {
+      const response = await fetch('/api/savepart', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({partlist:list, useremail, model}),
+      });
+     
+        if(response){
+              alert("체크리스트 등록 완료!");
+        }
+    } 
+
+
   let next;
   switch (test1) {
     case -1:
@@ -74,8 +106,9 @@ function TopBar() {
       break;
     case 4:
       next = (<button className="next-button" onClick={() => {
-        router.push(`./checklist`);
         dispatch(setStep(5));
+        carsavehandler();
+        router.push(`./checklist`);
       }}>Next</button>);
       break;
     case 5:
@@ -86,9 +119,10 @@ function TopBar() {
       break;
       case 6:
         next = (<button className="next-button" onClick={() => {
-          router.push(`./`);
+          saveparthandler();
           dispatch(setStep(0));
-        }}>Next</button>);
+          router.push(`./`);
+        }}>등록</button>);
         break;
     default:
       next = (<h2>nonstep</h2>);
