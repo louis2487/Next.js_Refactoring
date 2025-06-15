@@ -54,6 +54,7 @@ export default function Lo() {
 
     const res = await fetch("/api/userlogin", {
       method: "POST",
+      credentials: 'include',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: email.trim() }),
     });
@@ -66,6 +67,7 @@ export default function Lo() {
       login(data.email);
       setEmail('');
       dispatch(login({email:data.email}));
+      mailhandler(`${data.email}`);
       router.push('/');
     } else {
       alert(`LOGIN ERROR`);
@@ -85,6 +87,25 @@ export default function Lo() {
       alert("로그아웃 실패");
     }
   };
+  const mailhandler = async (usermail : string) => {
+    const a = await fetch('/api/mail', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to: `${usermail}`,
+        subject: '로그인 확인 메일',
+        text: `안녕하세요 ${usermail}님! 오늘도 SmartGauge에 방문해주셔서 감사합니다!!!`,
+      }),
+    });
+    if (!a.ok) {
+      alert("확인 메일 전송 실패");
+      const err = await a.json().catch(() => ({}));
+      throw new Error(`${a.status} ${err.error ?? 'Unknown error'}`);
+    }
+    alert("확인 메일 전송 성공");
+    return  a.json(); 
+  };
+      
   
   return (
     <main className="login-main">

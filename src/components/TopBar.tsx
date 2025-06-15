@@ -70,7 +70,7 @@ function TopBar() {
               alert("체크리스트 등록 완료!");
         }
     } 
-
+   
 
   let next;
   switch (test1) {

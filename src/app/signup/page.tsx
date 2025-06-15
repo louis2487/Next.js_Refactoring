@@ -54,17 +54,37 @@ export default function Signup() {
       body: JSON.stringify({ email: email.trim() }),
     });
 
-    if (res.ok) {                     // 200‧201 모두 true
-      const data = await res.json();
+    if (res.ok) {    
+      mailhandler(email);               
+      await res.json();
       alert('이메일 등록 완료!');
       setEmail('');
-      console.log(data.status);
     } else if (res.status === 409) {
       alert('이미 등록된 이메일입니다.');
     } else {
       alert('서버 오류가 발생했습니다.');
     }
   }
+
+  const mailhandler = async (usermail : string) => {
+    console.log(useremail);
+    const a = await fetch('/api/mail', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to: `${usermail}`,
+        subject: '가입 확인 메일',
+        text: `안녕하세요 ${usermail}님! SmartGauge의 유저가 되신 것을 진심으로 환영합니다!`,
+      }),
+    });
+    if (!a.ok) {
+      alert("가입 메일 전송 실패");
+      const err = await a.json().catch(() => ({}));
+      throw new Error(`${a.status} ${err.error ?? 'Unknown error'}`);
+    }
+    alert("가입 메일 전송 성공");
+    return  a.json(); 
+  };
 
   return (
     <main className="login-main">

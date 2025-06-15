@@ -47,7 +47,7 @@ export default function Question() {
       <div className="home-hero">
         <h1 className="home-hero-title">
           문의하고 싶은 내용이 있다면<br />
-          36y4ws7@naver.com 로 메일 보내주세요!
+          smartgauge@www.smartgauge.co.kr 로 메일 보내주세요!
         </h1>
       </div>
     </main>
