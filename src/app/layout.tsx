@@ -25,6 +25,15 @@ function LayoutContent({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const dispatch = useDispatch();
 
+  const hideTopBar =
+    pathname === '/' ||
+    pathname === '/Info' ||
+    pathname === '/Question' ||
+    pathname === '/Lo' ||
+    pathname === '/signup' ||
+    pathname === '/_not-found' ||
+    pathname === '/priversy_smartparking' ||
+    pathname.startsWith('/priversy_smartparking/');
 
   useEffect(() => {
     async function restoreSession() {
@@ -44,13 +53,7 @@ function LayoutContent({ children }: { children: ReactNode }) {
 
   return (
     <>
-      {pathname !== '/' &&
-       pathname !== '/Info' &&
-       pathname !== '/Question' &&
-       pathname !== '/Lo' &&
-       pathname !== '/signup' &&
-       pathname !== '/_not-found' && <TopBar />
-      }
+      {!hideTopBar && <TopBar />}
       {children}
     </>
   );
