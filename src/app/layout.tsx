@@ -33,7 +33,9 @@ function LayoutContent({ children }: { children: ReactNode }) {
     pathname === '/signup' ||
     pathname === '/_not-found' ||
     pathname === '/priversy_smartparking' ||
-    pathname.startsWith('/priversy_smartparking/');
+    pathname.startsWith('/priversy_smartparking/') ||
+    pathname.startsWith('/priversy_smartresearch/');
+    
 
   useEffect(() => {
     async function restoreSession() {
